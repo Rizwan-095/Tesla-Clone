@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 function Header() {
   const [menuState, menuStateFun] = useState(false);
+
   const toggleMenu = () => {
     menuStateFun((prev) => !prev);
-    console.log(menuState);
   };
   return (
     <Container>
