@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function Header() {
@@ -9,14 +10,14 @@ function Header() {
   };
   return (
     <Container>
-      <a>
-        <img src="logo.svg" />
-      </a>
+      <Link to={"/"}>
+        <img src="/logo.svg" />
+      </Link>
       <Menu>
-        <a href="#">Model S</a>
-        <a href="#">Model 3</a>
-        <a href="#">Model X</a>
-        <a href="#">Model Y</a>
+        <Link to="model-s">Model S</Link>
+        <Link to="model-3">Model 3</Link>
+        <Link to="model-x">Model X</Link>
+        <Link to="model-y">Model Y</Link>
       </Menu>
       <RightMenu>
         <a href="#">Shop</a>
@@ -28,10 +29,10 @@ function Header() {
         <span>
           <img src="icons8-multiply-50.png" alt="" onClick={toggleMenu} />
         </span>
-        <a href="#">Model S</a>
-        <a href="#">Model 3</a>
-        <a href="#">Model X</a>
-        <a href="#">Model Y</a>
+        <Link to="model-s">Model S</Link>
+        <Link to="model-3">Model 3</Link>
+        <Link to="model-x">Model X</Link>
+        <Link to="model-y">Model Y</Link>
         <a href="#">Solar Houses</a>
         <a href="#">Solar Panels</a>
         <a href="#">Rockets</a>

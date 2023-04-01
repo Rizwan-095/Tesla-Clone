@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function Section({ title, description, image, time }) {
@@ -10,10 +11,12 @@ function Section({ title, description, image, time }) {
       </ItemText>
       <span>
         <BtnWrap>
-          <LeftBtn>Custom Order</LeftBtn>
+          <LeftBtn>
+            <Link to={title.toLowerCase().replace(" ", "-")}>Custom Order</Link>
+          </LeftBtn>
           {time && <RightBtn>Existing Inventory</RightBtn>}
         </BtnWrap>
-        <DownArr src="down-arrow.svg"></DownArr>
+        <DownArr src="down-arrow.svg" />
       </span>
     </Wrap>
   );
