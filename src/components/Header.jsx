@@ -1,9 +1,20 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
+
+// find the change in url when you click on the link
 
 function Header() {
   const [menuState, menuStateFun] = useState(false);
+  const Location = useLocation();
+
+  //This code is used to change the state of the menu when the user navigates to a different page.
+  //menuStateFun is a function that changes the state of the menu.
+  //Location.pathname is the pathname of the current URL.
+
+  useEffect(() => {
+    menuState && menuStateFun(false);
+  }, [Location.pathname]);
 
   const toggleMenu = () => {
     menuStateFun((prev) => !prev);
@@ -33,10 +44,8 @@ function Header() {
         <Link to="model-3">Model 3</Link>
         <Link to="model-x">Model X</Link>
         <Link to="model-y">Model Y</Link>
-        <a href="#">Solar Houses</a>
-        <a href="#">Solar Panels</a>
-        <a href="#">Rockets</a>
-        <a href="#">Twitters</a>
+        <Link to="solar-roof">Solar Roof</Link>
+        <Link to="solar-panels">Solar Panels</Link>
       </Hamburger>
     </Container>
   );
@@ -54,6 +63,7 @@ const Container = styled.div`
   flex-direction: row;
   font-weight: 600;
   align-items: center;
+  z-index: 100;
 `;
 
 const Menu = styled.div`
@@ -62,6 +72,13 @@ const Menu = styled.div`
 
   a {
     margin: 0 0 0 3rem;
+    border-bottom: 2px solid transparent;
+    padding: 0.2rem 0.5rem;
+    &:hover {
+      border-bottom: 2px solid red;
+      transition: all 1s;
+      cursor: pointer;
+    }
   }
 
   @media only screen and (max-width: 1000px) {
@@ -81,9 +98,26 @@ const RightMenu = styled.div`
     margin-left: 10px;
     width: 18px;
   }
+
+  a {
+    border-bottom: 2px solid transparent;
+    padding: 0.2rem 0.5rem;
+    &:hover {
+      border-bottom: 2px solid red;
+      transition: all 1s;
+      cursor: pointer;
+    }
+  }
+  @media only screen and (max-width: 1000px) {
+    /* For mobile phones: */
+    a {
+      display: none;
+    }
+  }
 `;
 
 const Hamburger = styled.div`
+  z-index: 100;
   top: 0;
   right: 0;
   width: 20rem;
@@ -98,8 +132,15 @@ const Hamburger = styled.div`
   transform: translateX(100%);
   transform: ${(props) => (props.show ? "translateX(0)" : "trasnlateX(100%)")};
   transition: all 0.2s;
+
   a {
-    padding: 0.7rem 0;
+    padding: 0.7rem 0rem;
+    margin: 0rem 2rem 0 0;
+    &:hover {
+      cursor: pointer;
+      background-color: #f5f5f5;
+      trasition: all 0.2s;
+    }
   }
   img {
     width: 2.5rem;

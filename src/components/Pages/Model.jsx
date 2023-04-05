@@ -12,7 +12,7 @@ function Model() {
     <Wrap background={car.image}>
       <h1>{car.title}</h1>
       <LeftBtn>
-        <Link to="/">Custom Order</Link>
+        <Link to="/">Cancel order</Link>
       </LeftBtn>
       <p>{car.description}</p>
     </Wrap>
@@ -32,6 +32,7 @@ const Wrap = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 3rem 0;
+  trasnition: all 3s ease-in-out;
 `;
 
 const LeftBtn = styled.div`
@@ -43,6 +44,17 @@ const LeftBtn = styled.div`
   border-radius: 30rem;
   background-color: #686868;
   opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+
+    a {
+      transition: all 0.3s ease-in-out;
+      color: white;
+    }
+  }
+
   @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     margin-top: 0.8rem;

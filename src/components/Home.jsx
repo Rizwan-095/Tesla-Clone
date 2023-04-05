@@ -1,9 +1,10 @@
 import React from "react";
 import Section from "./Section";
 import data from "./../../json/carInfo.json";
+import styled from "styled-components";
 
 function Home() {
-  const Test = () => (
+  const Sections = () => (
     <>
       {data.map((d) => (
         <Section
@@ -17,11 +18,7 @@ function Home() {
     </>
   );
 
-  return (
-    <div>
-      <Test />
-    </div>
-  );
+  return <Sections />;
 }
 
 export default Home;

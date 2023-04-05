@@ -34,6 +34,7 @@ const Wrap = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  padding-top: 2rem;
 `;
 const ItemText = styled.div`
   padding: 2rem;
@@ -58,7 +59,19 @@ const LeftBtn = styled.div`
   color: white;
   border-radius: 30rem;
   background-color: #686868;
+  transition: all .3s ease-in-out;
   opacity: 0.7;
+
+   &:hover {
+    opacity: 1;
+  transition: all .3s ease-in-out;
+
+    a {
+  transition: all .3s ease-in-out;
+
+      color: white;
+    }
+
   @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     margin-top: 0.8rem;
