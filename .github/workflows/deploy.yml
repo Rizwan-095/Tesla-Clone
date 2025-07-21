@@ -1,0 +1,47 @@
+name: Deploy React App on Server
+
+on:
+  push:
+    branches:
+      - branch-name
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    if: contains(github.event.head_commit.message, 'deploy:')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup SSH Key
+        run: |
+          echo "${{ secrets.PRODUCTION_PRIVATE_KEY }}" > private_key.pem
+          chmod 600 private_key.pem
+      - name: Deploy Docker Container
+        run: |
+          ssh -o StrictHostKeyChecking=no -i private_key.pem ${{ secrets.PRODUCTION_USER }}@${{ secrets.PRODUCTION_HOST }}<<'EOF'
+          set -e
+        
+          cd ~/react_apps/Tesla-Clone
+        
+          git pull origin main
+          
+          docker stop tesla-clone || true
+          docker rm tesla-clone || true
+         
+          docker build -f Dockerfile -t tesla-clone .
+         
+          docker run -d \
+          -p 80:80 \
+          -p 443:443 \
+          --network="host" \
+          -v /etc/nginx/certs:/etc/nginx/certs \
+          --name tesla-clone \
+          tesla-clone
+          EOF          
+      - name: Clean up SSH Key
+        run: |
+          rm -f private_key.pem
+ 
