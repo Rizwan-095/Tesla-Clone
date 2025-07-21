@@ -34,12 +34,13 @@ jobs:
           docker build -f Dockerfile -t tesla-clone .
          
           docker run -d \
-          -p 80:80 \
-          -p 443:443 \
-          --network="host" \
-          -v /etc/nginx/certs:/etc/nginx/certs \
-          --name tesla-clone \
-          tesla-clone
+            -p 80:80 \
+            -p 443:443 \
+            --network="host" \
+            -v /etc/nginx/certs:/etc/nginx/certs \
+            --name tesla-clone \
+            tesla-clone
+          
           EOF          
       - name: Clean up SSH Key
         run: |
