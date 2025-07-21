@@ -25,7 +25,7 @@ function Header() {
         <img src="/logo.svg" />
       </Link>
       <Menu>
-        <Link to="model-s">Model S</Link>
+        <Link to="model-s">Model S2</Link>
         <Link to="model-3">Model 3</Link>
         <Link to="model-x">Model X</Link>
         <Link to="model-y">Model Y</Link>
