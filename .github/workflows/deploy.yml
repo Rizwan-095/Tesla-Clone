@@ -3,7 +3,7 @@ name: Deploy React App on Server
 on:
   push:
     branches:
-      - branch-name
+      - main
   workflow_dispatch:
 
 jobs:
