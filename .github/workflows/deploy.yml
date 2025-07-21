@@ -21,7 +21,7 @@ jobs:
           chmod 600 private_key.pem
       - name: Deploy Docker Container
         run: |
-          ssh -o StrictHostKeyChecking=no -i private_key.pem ${{ secrets.PRODUCTION_USER }}@${{ secrets.PRODUCTION_HOST }}<<'EOF'
+          ssh -o StrictHostKeyChecking=no -i private_key.pem ${{ secrets.PRODUCTION_USER }}@${{ secrets.PRODUCTION_HOST }} << 'EOF'
           set -e
         
           cd ~/react_apps/Tesla-Clone
