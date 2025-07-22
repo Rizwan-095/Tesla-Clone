@@ -19,29 +19,29 @@ jobs:
         run: |
           echo "${{ secrets.PRODUCTION_PRIVATE_KEY }}" > private_key.pem
           chmod 600 private_key.pem
+
       - name: Deploy Docker Container
         run: |
-          ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -i private_key.pem ${{ secrets.PRODUCTION_USER }}@${{ secrets.PRODUCTION_HOST }} << 'EOF'
-          set -e
-        
-          cd ~/react_apps/Tesla-Clone
-        
-          git pull origin main
-          
-          docker stop tesla-clone || true
-          docker rm tesla-clone || true
-         
-          docker build -f Dockerfile -t tesla-clone .
-         
-          docker run -d \
-            -p 80:80 \
-            -p 443:443 \
-            --network="host" \
-            -v /etc/nginx/certs:/etc/nginx/certs \
-            --name tesla-clone \
-            tesla-clone
-          EOF          
+          ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -i private_key.pem ${{ secrets.PRODUCTION_USER }}@${{ secrets.PRODUCTION_HOST }} bash -s <<'SCRIPT'
+            set -e
+
+            cd ~/react_apps/Tesla-Clone
+
+            git pull origin main
+
+            docker stop tesla-clone || true
+            docker rm tesla-clone || true
+
+            docker build -f Dockerfile -t tesla-clone .
+
+            docker run -d \
+              -p 80:80 \
+              -p 443:443 \
+              --network="host" \
+              -v /etc/nginx/certs:/etc/nginx/certs \
+              --name tesla-clone \
+              tesla-clone
+          SCRIPT
       - name: Clean up SSH Key
         run: |
           rm -f private_key.pem
- 
