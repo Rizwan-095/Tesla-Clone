@@ -32,6 +32,8 @@ jobs:
             docker stop tesla-clone || true
             docker rm tesla-clone || true
 
+            docker system prune -f --volumes
+            
             docker build -f Dockerfile -t tesla-clone .
 
             docker run -d \
