@@ -32,7 +32,7 @@ function Header() {
       </Menu>
       <RightMenu>
         <a href="#">Shop</a>
-        <a href="#">Tesla Account</a>
+        <a href="#">Account</a>
         <img src="icons8-menu-rounded-50.png" alt="" onClick={toggleMenu} />
       </RightMenu>
 
