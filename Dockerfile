@@ -10,5 +10,5 @@ RUN npm run build
 FROM nginx:alpine
 WORKDIR /
 COPY --from=build /app/dist /usr/share/nginx/html
-EXPOSE 80 443
+EXPOSE 5000
 CMD ["nginx", "-g", "daemon off;"]
